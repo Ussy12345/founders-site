@@ -53,7 +53,7 @@ export const founders: Founder[] = [
     labels: 'CEO · Software Engineer · Entrepreneur',
     initials: 'US',
     photo: '/images/usman-shehu-zannur',
-    photoReady: false,
+    photoReady: true,
     photoAlt: 'Usman Shehu, also known as Zannur, CEO, software engineer and entrepreneur',
     summary:
       'Technology entrepreneur and software engineer. CEO of Famzuk, founder of RankRush, and founder and chief engineer of Aniaja Company.',
@@ -86,7 +86,7 @@ export const founders: Founder[] = [
     labels: 'CFO · Entrepreneur · Co-Founder',
     initials: 'YA',
     photo: '/images/yahayah-adam',
-    photoReady: false,
+    photoReady: true,
     photoAlt: 'Yahayah Adam, CFO, entrepreneur and co-founder',
     summary:
       'Entrepreneur and Chief Financial Officer of Famzuk and RankRush, and business partner of Usman Shehu.',
