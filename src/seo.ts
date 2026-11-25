@@ -16,7 +16,7 @@ const photoUrl = (f: Founder) => abs(f.photo + '.jpg');
 const ogPhoto = (f: Founder) => abs(f.photo + '-og.jpg');
 
 const websiteLd = () => ({
-  '@type': 'WebSite', '@id': `${SITE.url}/#website`, url: SITE.url + '/', name: SITE.name,
+  '@type': 'WebSite', '@id': `${SITE.url}/#website`, url: SITE.url + '/', name: SITE.name, alternateName: ['Usman Shehu', 'Zannur', 'ussydev', 'Yahayah Adam'],
   description: 'Official website of Usman Shehu (Zannur) and Yahayah Adam, founders and business partners behind Famzuk and RankRush.',
 });
 
@@ -110,15 +110,22 @@ export function pageMeta(rawPath: string): Meta {
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
+const GV = import.meta.env.VITE_GOOGLE_VERIFICATION as string | undefined;
+const BV = import.meta.env.VITE_BING_VERIFICATION as string | undefined;
+
 export function headTags(path: string): string {
   const m = pageMeta(path);
   const tags = [
     `<title>${esc(m.title)}</title>`,
     `<meta name="description" content="${esc(m.description)}" />`,
     `<link rel="canonical" href="${m.canonical}" />`,
-    `<meta name="robots" content="${m.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}" />`,
+    `<meta name="author" content="Usman Shehu and Yahayah Adam" />`,
+    ...(GV ? [`<meta name="google-site-verification" content="${esc(GV)}" />`] : []),
+    ...(BV ? [`<meta name="msvalidate.01" content="${esc(BV)}" />`] : []),
+    `<meta name="robots" content="${m.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}" />`,
     `<meta property="og:type" content="${m.type}" />`,
     `<meta property="og:site_name" content="${esc(SITE.name)}" />`,
+    `<meta property="og:locale" content="en" />`,
     `<meta property="og:title" content="${esc(m.title)}" />`,
     `<meta property="og:description" content="${esc(m.description)}" />`,
     `<meta property="og:url" content="${m.canonical}" />`,
