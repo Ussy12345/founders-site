@@ -74,7 +74,7 @@ export const founders: Founder[] = [
     knowsAbout: ['Software development', 'Web development', 'Application development', 'Product innovation', 'Entrepreneurship', 'Educational technology'],
     socials: [],
     partnerId: 'yahayah',
-    metaTitle: 'Usman Shehu (Zannur) | CEO, Software Engineer & Entrepreneur',
+    metaTitle: 'Usman Shehu (Zannur, ussydev) | CEO, Software Engineer & Entrepreneur',
     metaDescription:
       'Usman Shehu, also known as Zannur and ussydev, is a software engineer and entrepreneur. CEO of Famzuk, founder of RankRush, partner of Yahayah Adam.',
   },
