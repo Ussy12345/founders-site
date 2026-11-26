@@ -80,7 +80,7 @@ export function pageMeta(rawPath: string): Meta {
   }
   switch (path) {
     case '/':
-      return { ...base, title: 'Usman Shehu & Yahayah Adam | Founders, Entrepreneurs & Technology Leaders',
+      return { ...base, title: 'Usman Shehu & Yahayah Adam | Founders, Entrepreneurs & Tech Leaders',
         description: 'Official website of Usman Shehu (Zannur, ussydev), CEO and software engineer, and Yahayah Adam, CFO and co-founder. Founders of Famzuk, RankRush and LOT 10 FX.',
         images: [...photos(), ...logos()], jsonLd: graph(websiteLd(), ...allPeople(), ...allOrgs()) };
     case '/our-partnership':
