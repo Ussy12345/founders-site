@@ -26,7 +26,7 @@ Everything is in `src/data/site.ts`: founders, ventures, projects, timeline, ach
 - Social links: add `{ label: 'LinkedIn', url: '...' }` to a founder's `socials` (also feeds `sameAs` in structured data). Add only accounts that are really yours.
 
 ## Deploy (any static host)
-Set the environment variable `VITE_SITE_URL=https://your-domain.com`, build command `npm run build`, publish directory `dist`.
+Set the environment variable `VITE_SITE_URL=https://founders-at2t.onrender.com`, build command `npm run build`, publish directory `dist`.
 - **Cloudflare Pages / Netlify / Render Static Site**: connect the Git repo, use the settings above. `public/_headers` adds security and cache headers on Netlify and Cloudflare.
 - **Vercel**: framework preset Vite, output directory `dist`.
 - Use your own domain and serve it over HTTPS. Pick one of www or non-www and redirect the other to it.
@@ -43,6 +43,6 @@ Set the environment variable `VITE_SITE_URL=https://your-domain.com`, build comm
 4. URL Inspection: inspect `/`, `/founders/usman-shehu`, `/founders/yahayah-adam`, `/our-partnership`, then Request indexing.
 
 ### Bing Webmaster Tools
-Go to bing.com/webmasters, sign in, import from Search Console or verify manually, then submit `https://your-domain.com/sitemap.xml`.
+Go to bing.com/webmasters, sign in, import from Search Console or verify manually, then submit `https://founders-at2t.onrender.com/sitemap.xml`.
 
 Nobody can guarantee rankings, image results or a knowledge panel. This site provides the technical foundation; results depend on Google, over weeks to months.

@@ -6,7 +6,7 @@
 export const SITE = {
   name: 'Usman Shehu & Yahayah Adam',
   // Set VITE_SITE_URL in .env (see .env.example) to your real domain.
-  url: ((import.meta.env.VITE_SITE_URL as string | undefined) || 'https://YOUR-DOMAIN.com').replace(/\/$/, ''),
+  url: ((import.meta.env.VITE_SITE_URL as string | undefined) || 'https://founders-at2t.onrender.com').replace(/\/$/, ''),
   ogDefault: '/images/og-default.png',
   email: '', // TODO: business email, e.g. 'contact@yourdomain.com'. Leave '' to hide.
   twitter: '', // TODO: optional @handle for Twitter/X cards
