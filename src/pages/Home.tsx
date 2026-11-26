@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { founders, projects, ventures } from '../data/site';
+import { faqs, founders, projects, ventures } from '../data/site';
 import { Photo, Section, FounderCard } from '../components/ui';
 import { Achievements, ContactBlock, ProjectCard, Timeline, VentureCard } from '../components/blocks';
 
@@ -58,6 +58,16 @@ export default function Home() {
       </Section>
 
       <Section title="Roles and milestones"><Achievements /></Section>
+      <Section title="Frequently asked questions">
+        <dl className="grid gap-4 lg:grid-cols-2">
+          {faqs.map((f) => (
+            <div key={f.q} className="card">
+              <dt className="font-serif text-lg text-white">{f.q}</dt>
+              <dd className="mt-2 text-sm leading-relaxed">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
       <Section title="Contact"><ContactBlock /></Section>
     </>
   );

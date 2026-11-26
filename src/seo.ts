@@ -1,4 +1,4 @@
-import { SITE, founders, ventures, projects, getFounder, getProject, founderById, ventureById, type Founder, type Venture } from './data/site';
+import { SITE, founders, ventures, projects, getFounder, getProject, founderById, ventureById, type Founder, type Venture, faqs } from './data/site';
 
 export interface Meta {
   title: string; description: string; canonical: string; image: string;
@@ -27,7 +27,7 @@ const personLd = (f: Founder) => {
     '@type': 'Person', '@id': personId(f), name: f.name,
     ...(f.alternateName ? { alternateName: f.otherNames?.length ? [f.alternateName, ...f.otherNames] : f.alternateName } : {}),
     jobTitle: f.jobTitle, description: f.summary, url: abs(`/founders/${f.slug}`),
-    ...(f.photoReady ? { image: photoUrl(f) } : {}),
+    ...(f.photoReady ? { image: { '@type': 'ImageObject', url: photoUrl(f), contentUrl: photoUrl(f), name: f.name, caption: f.photoAlt, width: 800, height: 1000 } } : {}),
     worksFor: [...ventureRefs, ...other],
     knowsAbout: f.knowsAbout,
     colleague: { '@id': personId(founderById(f.partnerId)) },
@@ -42,6 +42,7 @@ const orgLd = (v: Venture) => ({
   ...(v.founderIds.length ? { founder: v.founderIds.map((id) => ({ '@id': personId(founderById(id)) })) } : {}),
 });
 
+const faqLd = () => ({ '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
 const graph = (...items: Record<string, unknown>[]) => ({ '@context': 'https://schema.org', '@graph': items });
 const allPeople = () => founders.map(personLd);
 const allOrgs = () => ventures.map(orgLd);
@@ -74,7 +75,7 @@ export function pageMeta(rawPath: string): Meta {
     const p = projectPage; const v = ventureById(p.ventureId);
     return {
       ...base, title: v.tagline ? `${p.name}: ${v.tagline} | Usman Shehu & Yahayah Adam` : `${p.name} | Project by Usman Shehu & Yahayah Adam`,
-      description: short(v.description),
+      description: short(`${v.name} is led by ${v.leadership.map((l) => `${founderById(l.founderId).name} (${l.role})`).join(' and ')}. ${v.description}`),
       image: logoUrl(v), images: [logoUrl(v)], jsonLd: graph(websiteLd(), orgLd(v), ...allPeople()),
     };
   }
@@ -82,7 +83,7 @@ export function pageMeta(rawPath: string): Meta {
     case '/':
       return { ...base, title: 'Usman Shehu & Yahayah Adam | Founders, Entrepreneurs & Tech Leaders',
         description: 'Official website of Usman Shehu (Zannur, ussydev), CEO and software engineer, and Yahayah Adam, CFO and co-founder. Founders of Famzuk, RankRush and LOT 10 FX.',
-        images: [...photos(), ...logos()], jsonLd: graph(websiteLd(), ...allPeople(), ...allOrgs()) };
+        images: [...photos(), ...logos()], jsonLd: graph(websiteLd(), ...allPeople(), ...allOrgs(), faqLd()) };
     case '/our-partnership':
       return { ...base, title: 'Usman Shehu & Yahayah Adam | Business Partners and Founders',
         description: 'Usman Shehu (Zannur) and Yahayah Adam are business partners and founders building technology ventures, websites and digital products, including Famzuk and RankRush.',
@@ -120,6 +121,7 @@ export function headTags(path: string): string {
     `<meta name="description" content="${esc(m.description)}" />`,
     `<link rel="canonical" href="${m.canonical}" />`,
     `<meta name="author" content="Usman Shehu and Yahayah Adam" />`,
+    `<meta name="application-name" content="${esc(SITE.name)}" />`,
     ...(GV ? [`<meta name="google-site-verification" content="${esc(GV)}" />`] : []),
     ...(BV ? [`<meta name="msvalidate.01" content="${esc(BV)}" />`] : []),
     `<meta name="robots" content="${m.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}" />`,

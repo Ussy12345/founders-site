@@ -7,7 +7,7 @@ export const SITE = {
   name: 'Usman Shehu & Yahayah Adam',
   // Set VITE_SITE_URL in .env (see .env.example) to your real domain.
   url: ((import.meta.env.VITE_SITE_URL as string | undefined) || 'https://founders-at2t.onrender.com').replace(/\/$/, ''),
-  ogDefault: '/images/og-default.png',
+  ogDefault: '/images/og-founders.jpg',
   email: '', // TODO: business email, e.g. 'contact@yourdomain.com'. Leave '' to hide.
   twitter: '', // TODO: optional @handle for Twitter/X cards
 };
@@ -332,3 +332,12 @@ export const getFounder = (slug: string) => founders.find((f) => f.slug === slug
 export const founderById = (id: string) => founders.find((f) => f.id === id)!;
 export const ventureById = (id: string) => ventures.find((v) => v.id === id)!;
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+
+export const faqs: { q: string; a: string }[] = [
+  { q: 'Who are Usman Shehu and Yahayah Adam?', a: 'Usman Shehu (also known as Zannur and ussydev) and Yahayah Adam are entrepreneurs, business partners and co-founders building digital products, technology ventures and businesses, including Famzuk and RankRush.' },
+  { q: 'Who is Usman Shehu (Zannur, ussydev)?', a: 'Usman Shehu, professionally known as Zannur and also as ussydev, is a technology entrepreneur and software engineer. He is CEO of Famzuk, founder and CEO of RankRush, and founder and chief engineer of Aniaja Company, and he works with his business partner Yahayah Adam.' },
+  { q: 'Who is Yahayah Adam?', a: 'Yahayah Adam is an entrepreneur and Chief Financial Officer of Famzuk and RankRush. He is a co-founder and the business partner of Usman Shehu, and handles financial management, business planning and business development.' },
+  { q: 'Who runs Famzuk?', a: 'Famzuk is led by Usman Shehu as CEO and Yahayah Adam as CFO. Famzuk is an academic learning platform with AI-powered assistance, flashcards, exam practice for JAMB, WAEC and NECO, and study tools.' },
+  { q: 'Who runs RankRush?', a: 'RankRush is led by Usman Shehu as Founder and CEO and Yahayah Adam as CFO. RankRush is a competitive quiz, learning and rewards platform with XP, coins, surveys and seasonal leaderboards.' },
+  { q: 'Is Zannur the same person as Usman Shehu?', a: 'Yes. Zannur and ussydev are other names that Usman Shehu is known by.' },
+];
